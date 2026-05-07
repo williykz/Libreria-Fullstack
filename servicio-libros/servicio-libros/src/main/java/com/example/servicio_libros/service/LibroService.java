@@ -5,6 +5,8 @@ import com.example.servicio_libros.repository.LibroRepository;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LibroService {
     private final LibroRepository libroRepository;
@@ -34,7 +36,7 @@ public class LibroService {
         libroExistente.setTitulo(libro.getTitulo());
         libroExistente.setAutor((libro.getAutor()));
         libroExistente.setIsbn((libro.getIsbn()));
-        libroExistente.setCategoria((Libro.getCategoria()));
+        libroExistente.setCategoria(Libro.getCategoria());
         libroExistente.setPrecio(libro.getPrecio());
         libroExistente.setAnioPublicacion(libro.getAnioPublicacion());
         libroExistente.setEditorialId(libro.getEditorialId());
