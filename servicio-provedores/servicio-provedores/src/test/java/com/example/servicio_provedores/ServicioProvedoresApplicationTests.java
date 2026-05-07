@@ -1,0 +1,13 @@
+package com.example.servicio_provedores;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class ServicioProvedoresApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
