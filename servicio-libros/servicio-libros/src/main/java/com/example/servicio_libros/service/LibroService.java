@@ -20,8 +20,8 @@ public class LibroService {
 
 
     }
-    public Libro buscarPorId(@NonNull Long id){
-        return libroRepository.findById(id.orElse(null));
+    public Libro buscarPorId(Long id) {
+        return libroRepository.findById(id).orElse(null);
     }
     public Libro guardarLibro(Libro libro){
         return libroRepository.save(libro);
@@ -36,10 +36,8 @@ public class LibroService {
         libroExistente.setTitulo(libro.getTitulo());
         libroExistente.setAutor((libro.getAutor()));
         libroExistente.setIsbn((libro.getIsbn()));
-        libroExistente.setCategoria(Libro.getCategoria());
         libroExistente.setPrecio(libro.getPrecio());
         libroExistente.setAnioPublicacion(libro.getAnioPublicacion());
-        libroExistente.setEditorialId(libro.getEditorialId());
         libroExistente.setActivo(libro.getActivo());
         return libroRepository.save(libroExistente);
 
