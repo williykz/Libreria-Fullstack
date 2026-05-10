@@ -1,9 +1,6 @@
 package com.example.servicio_libros.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -17,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Libro {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,6 +26,7 @@ public class Libro {
     private String autor;
 
     @NotBlank
+    @Column(unique = true)
     private String isbn;
 
     @NotBlank
@@ -35,13 +34,12 @@ public class Libro {
 
     @NotNull
     @Positive
-    private double precio;
+    private Double precio;
 
     @NotNull
     private Integer anioPublicacion;
 
-    private long editoriaId;
+    private Long editorialId;
 
     private Boolean activo = true;
 }
-

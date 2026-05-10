@@ -101,7 +101,7 @@ public class PedidoService {
             return null;
         }
 
-        pedidoExistente.setCliente(pedido.getCliente());
+        pedidoExistente.setClienteId(pedido.getClienteId());
         pedidoExistente.setFechaPedido(pedido.getFechaPedido());
         pedidoExistente.setEstado(pedido.getEstado());
 

@@ -21,7 +21,7 @@ public class Pedido {
     private Long id;
 
     @NotNull
-    private Long cliente;
+    private Long clienteId;
 
     private LocalDate fechaPedido;
 
