@@ -1,0 +1,374 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-libro
+      author: williams
+      changes:
+        - createTable:
+            tableName: libro
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: titulo
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: autor
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: isbn
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+              - column:
+                  name: categoria
+                  type: VARCHAR(80)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: precio
+                  type: DOUBLE
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: anio_publicacion
+                  type: INT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: editorial_id
+                  type: BIGINT
+
+              - column:
+                  name: activo
+                  type: BOOLEAN
+
+  - changeSet:
+      id: 002-insert-libros
+      author: williams
+      changes:
+        - insert:
+            tableName: libro
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: titulo
+                  value: "La dictadura"
+              - column:
+                  name: autor
+                  value: "Antoine de Saint"
+              - column:
+                  name: isbn
+                  value: "9781234567899"
+              - column:
+                  name: categoria
+                  value: "Literatura"
+              - column:
+                  name: precio
+                  valueNumeric: 12000
+              - column:
+                  name: anio_publicacion
+                  valueNumeric: 1982
+              - column:
+                  name: editorial_id
+                  valueNumeric: 12
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: libro
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 2
+              - column:
+                  name: titulo
+                  value: "El Principito"
+              - column:
+                  name: autor
+                  value: "Antoine de Saint-Exupery"
+              - column:
+                  name: isbn
+                  value: "9781234567890"
+              - column:
+                  name: categoria
+                  value: "Literatura"
+              - column:
+                  name: precio
+                  valueNumeric: 12990
+              - column:
+                  name: anio_publicacion
+                  valueNumeric: 1943
+              - column:
+                  name: editorial_id
+                  valueNumeric: 1
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: libro
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 3
+              - column:
+                  name: titulo
+                  value: "Cien años de soledad"
+              - column:
+                  name: autor
+                  value: "Gabriel Garcia Marquez"
+              - column:
+                  name: isbn
+                  value: "9780307474728"
+              - column:
+                  name: categoria
+                  value: "Novela"
+              - column:
+                  name: precio
+                  valueNumeric: 15990
+              - column:
+                  name: anio_publicacion
+                  valueNumeric: 1967
+              - column:
+                  name: editorial_id
+                  valueNumeric: 2
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: libro
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 4
+              - column:
+                  name: titulo
+                  value: "1984"
+              - column:
+                  name: autor
+                  value: "George Orwell"
+              - column:
+                  name: isbn
+                  value: "9780451524935"
+              - column:
+                  name: categoria
+                  value: "Distopia"
+              - column:
+                  name: precio
+                  valueNumeric: 13990
+              - column:
+                  name: anio_publicacion
+                  valueNumeric: 1949
+              - column:
+                  name: editorial_id
+                  valueNumeric: 3
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: libro
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 5
+              - column:
+                  name: titulo
+                  value: "Fahrenheit 451"
+              - column:
+                  name: autor
+                  value: "Ray Bradbury"
+              - column:
+                  name: isbn
+                  value: "9781451673319"
+              - column:
+                  name: categoria
+                  value: "Ciencia ficcion"
+              - column:
+                  name: precio
+                  valueNumeric: 11990
+              - column:
+                  name: anio_publicacion
+                  valueNumeric: 1953
+              - column:
+                  name: editorial_id
+                  valueNumeric: 4
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: libro
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 6
+              - column:
+                  name: titulo
+                  value: "Don Quijote de la Mancha"
+              - column:
+                  name: autor
+                  value: "Miguel de Cervantes"
+              - column:
+                  name: isbn
+                  value: "9780060934347"
+              - column:
+                  name: categoria
+                  value: "Clasico"
+              - column:
+                  name: precio
+                  valueNumeric: 18990
+              - column:
+                  name: anio_publicacion
+                  valueNumeric: 1605
+              - column:
+                  name: editorial_id
+                  valueNumeric: 5
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: libro
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 7
+              - column:
+                  name: titulo
+                  value: "Harry Potter y la piedra filosofal"
+              - column:
+                  name: autor
+                  value: "J.K. Rowling"
+              - column:
+                  name: isbn
+                  value: "9788478884452"
+              - column:
+                  name: categoria
+                  value: "Fantasia"
+              - column:
+                  name: precio
+                  valueNumeric: 14990
+              - column:
+                  name: anio_publicacion
+                  valueNumeric: 1997
+              - column:
+                  name: editorial_id
+                  valueNumeric: 6
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: libro
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 8
+              - column:
+                  name: titulo
+                  value: "Crimen y castigo"
+              - column:
+                  name: autor
+                  value: "Fiodor Dostoievski"
+              - column:
+                  name: isbn
+                  value: "9780140449136"
+              - column:
+                  name: categoria
+                  value: "Novela"
+              - column:
+                  name: precio
+                  valueNumeric: 16990
+              - column:
+                  name: anio_publicacion
+                  valueNumeric: 1866
+              - column:
+                  name: editorial_id
+                  valueNumeric: 7
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: libro
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 9
+              - column:
+                  name: titulo
+                  value: "Orgullo y prejuicio"
+              - column:
+                  name: autor
+                  value: "Jane Austen"
+              - column:
+                  name: isbn
+                  value: "9780141439518"
+              - column:
+                  name: categoria
+                  value: "Romance"
+              - column:
+                  name: precio
+                  valueNumeric: 10990
+              - column:
+                  name: anio_publicacion
+                  valueNumeric: 1813
+              - column:
+                  name: editorial_id
+                  valueNumeric: 8
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: libro
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 10
+              - column:
+                  name: titulo
+                  value: "El Hobbit"
+              - column:
+                  name: autor
+                  value: "J.R.R. Tolkien"
+              - column:
+                  name: isbn
+                  value: "9780547928227"
+              - column:
+                  name: categoria
+                  value: "Fantasia"
+              - column:
+                  name: precio
+                  valueNumeric: 17990
+              - column:
+                  name: anio_publicacion
+                  valueNumeric: 1937
+              - column:
+                  name: editorial_id
+                  valueNumeric: 9
+              - column:
+                  name: activo
+                  valueBoolean: true

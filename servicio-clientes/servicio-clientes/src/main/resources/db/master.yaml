@@ -1,0 +1,340 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-clientes
+      author: williams
+      changes:
+        - createTable:
+            tableName: clientes
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: rut
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+              - column:
+                  name: nombre
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: apellido
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: correo
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: telefono
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: direccion
+                  type: VARCHAR(150)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: activo
+                  type: BOOLEAN
+
+  - changeSet:
+      id: 002-insert-clientes
+      author: williams
+      changes:
+        - insert:
+            tableName: clientes
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: rut
+                  value: "11111111-1"
+              - column:
+                  name: nombre
+                  value: "Juan"
+              - column:
+                  name: apellido
+                  value: "Perez"
+              - column:
+                  name: correo
+                  value: "juanperez@gmail.com"
+              - column:
+                  name: telefono
+                  value: "912345678"
+              - column:
+                  name: direccion
+                  value: "Av Siempre Viva 123"
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: clientes
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 2
+              - column:
+                  name: rut
+                  value: "22222222-2"
+              - column:
+                  name: nombre
+                  value: "Maria"
+              - column:
+                  name: apellido
+                  value: "Gonzalez"
+              - column:
+                  name: correo
+                  value: "mariagonzalez@gmail.com"
+              - column:
+                  name: telefono
+                  value: "923456789"
+              - column:
+                  name: direccion
+                  value: "Los Aromos 456"
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: clientes
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 3
+              - column:
+                  name: rut
+                  value: "33333333-3"
+              - column:
+                  name: nombre
+                  value: "Pedro"
+              - column:
+                  name: apellido
+                  value: "Ramirez"
+              - column:
+                  name: correo
+                  value: "pedroramirez@gmail.com"
+              - column:
+                  name: telefono
+                  value: "934567890"
+              - column:
+                  name: direccion
+                  value: "Las Rosas 789"
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: clientes
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 4
+              - column:
+                  name: rut
+                  value: "44444444-4"
+              - column:
+                  name: nombre
+                  value: "Camila"
+              - column:
+                  name: apellido
+                  value: "Torres"
+              - column:
+                  name: correo
+                  value: "camilatorres@gmail.com"
+              - column:
+                  name: telefono
+                  value: "945678901"
+              - column:
+                  name: direccion
+                  value: "Pasaje Norte 101"
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: clientes
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 5
+              - column:
+                  name: rut
+                  value: "55555555-5"
+              - column:
+                  name: nombre
+                  value: "Diego"
+              - column:
+                  name: apellido
+                  value: "Morales"
+              - column:
+                  name: correo
+                  value: "diegomorales@gmail.com"
+              - column:
+                  name: telefono
+                  value: "956789012"
+              - column:
+                  name: direccion
+                  value: "Av Central 202"
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: clientes
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 6
+              - column:
+                  name: rut
+                  value: "66666666-6"
+              - column:
+                  name: nombre
+                  value: "Valentina"
+              - column:
+                  name: apellido
+                  value: "Fuentes"
+              - column:
+                  name: correo
+                  value: "valentinafuentes@gmail.com"
+              - column:
+                  name: telefono
+                  value: "967890123"
+              - column:
+                  name: direccion
+                  value: "Los Pinos 303"
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: clientes
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 7
+              - column:
+                  name: rut
+                  value: "77777777-7"
+              - column:
+                  name: nombre
+                  value: "Matias"
+              - column:
+                  name: apellido
+                  value: "Castro"
+              - column:
+                  name: correo
+                  value: "matiascastro@gmail.com"
+              - column:
+                  name: telefono
+                  value: "978901234"
+              - column:
+                  name: direccion
+                  value: "Calle Sur 404"
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: clientes
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 8
+              - column:
+                  name: rut
+                  value: "88888888-8"
+              - column:
+                  name: nombre
+                  value: "Francisca"
+              - column:
+                  name: apellido
+                  value: "Silva"
+              - column:
+                  name: correo
+                  value: "franciscasilva@gmail.com"
+              - column:
+                  name: telefono
+                  value: "989012345"
+              - column:
+                  name: direccion
+                  value: "Av Oriente 505"
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: clientes
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 9
+              - column:
+                  name: rut
+                  value: "99999999-9"
+              - column:
+                  name: nombre
+                  value: "Ignacio"
+              - column:
+                  name: apellido
+                  value: "Rojas"
+              - column:
+                  name: correo
+                  value: "ignaciorojas@gmail.com"
+              - column:
+                  name: telefono
+                  value: "990123456"
+              - column:
+                  name: direccion
+                  value: "Las Palmeras 606"
+              - column:
+                  name: activo
+                  valueBoolean: true
+
+        - insert:
+            tableName: clientes
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 10
+              - column:
+                  name: rut
+                  value: "10101010-0"
+              - column:
+                  name: nombre
+                  value: "Sofia"
+              - column:
+                  name: apellido
+                  value: "Herrera"
+              - column:
+                  name: correo
+                  value: "sofiaherrera@gmail.com"
+              - column:
+                  name: telefono
+                  value: "901234567"
+              - column:
+                  name: direccion
+                  value: "Camino Real 707"
+              - column:
+                  name: activo
+                  valueBoolean: true

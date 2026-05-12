@@ -9,7 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@RestController
+@RequestMapping("/api/pedidos")
 public class PedidoController {
 
     private final PedidoService pedidoService;
@@ -86,6 +87,7 @@ public class PedidoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Pedido> actualizarPedido(@PathVariable Long id, @Valid @RequestBody Pedido pedido) {
+
         Pedido pedidoActualizado = pedidoService.actualizarPedido(id, pedido);
 
         if (pedidoActualizado == null) {
@@ -105,4 +107,5 @@ public class PedidoController {
 
         return ResponseEntity.noContent().build();
     }
+    
 }

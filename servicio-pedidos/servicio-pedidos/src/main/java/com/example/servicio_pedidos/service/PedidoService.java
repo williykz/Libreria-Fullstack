@@ -1,6 +1,5 @@
 package com.example.servicio_pedidos.service;
 
-
 import com.example.servicio_pedidos.client.InventarioClient;
 import com.example.servicio_pedidos.client.LibroClient;
 import com.example.servicio_pedidos.dto.InventarioDTO;
@@ -9,6 +8,8 @@ import com.example.servicio_pedidos.model.DetallePedido;
 import com.example.servicio_pedidos.model.Pedido;
 import com.example.servicio_pedidos.repository.DetallePedidoRepository;
 import com.example.servicio_pedidos.repository.PedidoRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -18,6 +19,8 @@ import java.util.List;
 
 @Service
 public class PedidoService {
+
+    private static final Logger logger = LoggerFactory.getLogger(PedidoService.class);
 
     private final PedidoRepository pedidoRepository;
     private final DetallePedidoRepository detallePedidoRepository;
@@ -55,6 +58,8 @@ public class PedidoService {
     }
 
     public Pedido guardarPedido(Pedido pedido) {
+        logger.info("Iniciando creación de pedido para cliente ID: {}", pedido.getClienteId());
+
         if (pedido.getFechaPedido() == null) {
             pedido.setFechaPedido(LocalDate.now());
         }
@@ -66,20 +71,24 @@ public class PedidoService {
         double total = 0;
 
         for (DetallePedido detalle : pedido.getDetalles()) {
+            logger.info("Validando libro ID: {}", detalle.getLibroId());
 
             LibroDTO libro = libroClient.obtenerLibroPorId(detalle.getLibroId());
 
             if (libro == null) {
+                logger.warn("No se encontró el libro ID: {}", detalle.getLibroId());
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El libro no existe");
             }
 
             InventarioDTO inventario = inventarioClient.obtenerInventarioPorLibroId(detalle.getLibroId());
 
             if (inventario == null) {
+                logger.warn("No se encontró inventario para el libro ID: {}", detalle.getLibroId());
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El libro no tiene inventario registrado");
             }
 
             if (inventario.getStockActual() < detalle.getCantidad()) {
+                logger.warn("Stock insuficiente para libro ID: {}", detalle.getLibroId());
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No hay stock suficiente");
             }
 
@@ -91,13 +100,20 @@ public class PedidoService {
 
         pedido.setTotal(total);
 
-        return pedidoRepository.save(pedido);
+        Pedido pedidoGuardado = pedidoRepository.save(pedido);
+
+        logger.info("Pedido creado correctamente con ID: {}", pedidoGuardado.getId());
+
+        return pedidoGuardado;
     }
 
     public Pedido actualizarPedido(Long id, Pedido pedido) {
+        logger.info("Iniciando actualización de pedido ID: {}", id);
+
         Pedido pedidoExistente = buscarPorId(id);
 
         if (pedidoExistente == null) {
+            logger.warn("No se encontró el pedido ID: {}", id);
             return null;
         }
 
@@ -110,6 +126,27 @@ public class PedidoService {
         double total = 0;
 
         for (DetallePedido detalle : pedido.getDetalles()) {
+            logger.info("Validando libro ID: {}", detalle.getLibroId());
+
+            LibroDTO libro = libroClient.obtenerLibroPorId(detalle.getLibroId());
+
+            if (libro == null) {
+                logger.warn("No se encontró el libro ID: {}", detalle.getLibroId());
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El libro no existe");
+            }
+
+            InventarioDTO inventario = inventarioClient.obtenerInventarioPorLibroId(detalle.getLibroId());
+
+            if (inventario == null) {
+                logger.warn("No se encontró inventario para el libro ID: {}", detalle.getLibroId());
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El libro no tiene inventario registrado");
+            }
+
+            if (inventario.getStockActual() < detalle.getCantidad()) {
+                logger.warn("Stock insuficiente para libro ID: {}", detalle.getLibroId());
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No hay stock suficiente");
+            }
+
             double subtotal = detalle.getCantidad() * detalle.getPrecioUnitario();
             detalle.setSubtotal(subtotal);
             detalle.setPedido(pedidoExistente);
@@ -119,7 +156,11 @@ public class PedidoService {
 
         pedidoExistente.setTotal(total);
 
-        return pedidoRepository.save(pedidoExistente);
+        Pedido pedidoActualizado = pedidoRepository.save(pedidoExistente);
+
+        logger.info("Pedido actualizado correctamente con ID: {}", pedidoActualizado.getId());
+
+        return pedidoActualizado;
     }
 
     public boolean eliminarPedido(Long id) {

@@ -8,7 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for servicio-pedidos" enabled="true">
+      <profile name="Annotation profile for servicio-clientes" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -18,8 +18,8 @@
         <module name="servicio-inventario" />
         <module name="servicio-pedidos" />
         <module name="servicio-pagos" />
-        <module name="servicio-libros" />
         <module name="servicio-clientes" />
+        <module name="servicio-libros" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

@@ -1,0 +1,501 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-pedido
+      author: williams
+      changes:
+        - createTable:
+            tableName: pedido
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: cliente_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: fecha_pedido
+                  type: DATE
+
+              - column:
+                  name: estado
+                  type: VARCHAR(50)
+
+              - column:
+                  name: total
+                  type: DOUBLE
+
+  - changeSet:
+      id: 002-create-detalle-pedido
+      author: williams
+      changes:
+        - createTable:
+            tableName: detalle_pedido
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: libro_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: cantidad
+                  type: INT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: precio_unitario
+                  type: DOUBLE
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: subtotal
+                  type: DOUBLE
+
+              - column:
+                  name: pedido_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: detalle_pedido
+            baseColumnNames: pedido_id
+            referencedTableName: pedido
+            referencedColumnNames: id
+            constraintName: fk_detalle_pedido_pedido
+
+  - changeSet:
+      id: 003-insert-pedidos
+      author: williams
+      changes:
+        - insert:
+            tableName: pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: cliente_id
+                  valueNumeric: 1
+              - column:
+                  name: fecha_pedido
+                  valueDate: "2026-05-01"
+              - column:
+                  name: estado
+                  value: "PENDIENTE"
+              - column:
+                  name: total
+                  valueNumeric: 24000
+
+        - insert:
+            tableName: pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 2
+              - column:
+                  name: cliente_id
+                  valueNumeric: 2
+              - column:
+                  name: fecha_pedido
+                  valueDate: "2026-05-02"
+              - column:
+                  name: estado
+                  value: "PAGADO"
+              - column:
+                  name: total
+                  valueNumeric: 18000
+
+        - insert:
+            tableName: pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 3
+              - column:
+                  name: cliente_id
+                  valueNumeric: 3
+              - column:
+                  name: fecha_pedido
+                  valueDate: "2026-05-03"
+              - column:
+                  name: estado
+                  value: "PENDIENTE"
+              - column:
+                  name: total
+                  valueNumeric: 30000
+
+        - insert:
+            tableName: pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 4
+              - column:
+                  name: cliente_id
+                  valueNumeric: 1
+              - column:
+                  name: fecha_pedido
+                  valueDate: "2026-05-04"
+              - column:
+                  name: estado
+                  value: "PAGADO"
+              - column:
+                  name: total
+                  valueNumeric: 15000
+
+        - insert:
+            tableName: pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 5
+              - column:
+                  name: cliente_id
+                  valueNumeric: 2
+              - column:
+                  name: fecha_pedido
+                  valueDate: "2026-05-05"
+              - column:
+                  name: estado
+                  value: "CANCELADO"
+              - column:
+                  name: total
+                  valueNumeric: 12000
+
+        - insert:
+            tableName: pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 6
+              - column:
+                  name: cliente_id
+                  valueNumeric: 4
+              - column:
+                  name: fecha_pedido
+                  valueDate: "2026-05-06"
+              - column:
+                  name: estado
+                  value: "PENDIENTE"
+              - column:
+                  name: total
+                  valueNumeric: 45000
+
+        - insert:
+            tableName: pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 7
+              - column:
+                  name: cliente_id
+                  valueNumeric: 5
+              - column:
+                  name: fecha_pedido
+                  valueDate: "2026-05-07"
+              - column:
+                  name: estado
+                  value: "PAGADO"
+              - column:
+                  name: total
+                  valueNumeric: 22000
+
+        - insert:
+            tableName: pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 8
+              - column:
+                  name: cliente_id
+                  valueNumeric: 6
+              - column:
+                  name: fecha_pedido
+                  valueDate: "2026-05-08"
+              - column:
+                  name: estado
+                  value: "PENDIENTE"
+              - column:
+                  name: total
+                  valueNumeric: 27000
+
+        - insert:
+            tableName: pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 9
+              - column:
+                  name: cliente_id
+                  valueNumeric: 7
+              - column:
+                  name: fecha_pedido
+                  valueDate: "2026-05-09"
+              - column:
+                  name: estado
+                  value: "PAGADO"
+              - column:
+                  name: total
+                  valueNumeric: 35000
+
+        - insert:
+            tableName: pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 10
+              - column:
+                  name: cliente_id
+                  valueNumeric: 8
+              - column:
+                  name: fecha_pedido
+                  valueDate: "2026-05-10"
+              - column:
+                  name: estado
+                  value: "PENDIENTE"
+              - column:
+                  name: total
+                  valueNumeric: 19000
+
+  - changeSet:
+      id: 004-insert-detalles-pedido
+      author: williams
+      changes:
+        - insert:
+            tableName: detalle_pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: libro_id
+                  valueNumeric: 1
+              - column:
+                  name: cantidad
+                  valueNumeric: 2
+              - column:
+                  name: precio_unitario
+                  valueNumeric: 12000
+              - column:
+                  name: subtotal
+                  valueNumeric: 24000
+              - column:
+                  name: pedido_id
+                  valueNumeric: 1
+
+        - insert:
+            tableName: detalle_pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 2
+              - column:
+                  name: libro_id
+                  valueNumeric: 1
+              - column:
+                  name: cantidad
+                  valueNumeric: 1
+              - column:
+                  name: precio_unitario
+                  valueNumeric: 18000
+              - column:
+                  name: subtotal
+                  valueNumeric: 18000
+              - column:
+                  name: pedido_id
+                  valueNumeric: 2
+
+        - insert:
+            tableName: detalle_pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 3
+              - column:
+                  name: libro_id
+                  valueNumeric: 2
+              - column:
+                  name: cantidad
+                  valueNumeric: 2
+              - column:
+                  name: precio_unitario
+                  valueNumeric: 15000
+              - column:
+                  name: subtotal
+                  valueNumeric: 30000
+              - column:
+                  name: pedido_id
+                  valueNumeric: 3
+
+        - insert:
+            tableName: detalle_pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 4
+              - column:
+                  name: libro_id
+                  valueNumeric: 3
+              - column:
+                  name: cantidad
+                  valueNumeric: 1
+              - column:
+                  name: precio_unitario
+                  valueNumeric: 15000
+              - column:
+                  name: subtotal
+                  valueNumeric: 15000
+              - column:
+                  name: pedido_id
+                  valueNumeric: 4
+
+        - insert:
+            tableName: detalle_pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 5
+              - column:
+                  name: libro_id
+                  valueNumeric: 4
+              - column:
+                  name: cantidad
+                  valueNumeric: 1
+              - column:
+                  name: precio_unitario
+                  valueNumeric: 12000
+              - column:
+                  name: subtotal
+                  valueNumeric: 12000
+              - column:
+                  name: pedido_id
+                  valueNumeric: 5
+
+        - insert:
+            tableName: detalle_pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 6
+              - column:
+                  name: libro_id
+                  valueNumeric: 2
+              - column:
+                  name: cantidad
+                  valueNumeric: 3
+              - column:
+                  name: precio_unitario
+                  valueNumeric: 15000
+              - column:
+                  name: subtotal
+                  valueNumeric: 45000
+              - column:
+                  name: pedido_id
+                  valueNumeric: 6
+
+        - insert:
+            tableName: detalle_pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 7
+              - column:
+                  name: libro_id
+                  valueNumeric: 5
+              - column:
+                  name: cantidad
+                  valueNumeric: 2
+              - column:
+                  name: precio_unitario
+                  valueNumeric: 11000
+              - column:
+                  name: subtotal
+                  valueNumeric: 22000
+              - column:
+                  name: pedido_id
+                  valueNumeric: 7
+
+        - insert:
+            tableName: detalle_pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 8
+              - column:
+                  name: libro_id
+                  valueNumeric: 6
+              - column:
+                  name: cantidad
+                  valueNumeric: 3
+              - column:
+                  name: precio_unitario
+                  valueNumeric: 9000
+              - column:
+                  name: subtotal
+                  valueNumeric: 27000
+              - column:
+                  name: pedido_id
+                  valueNumeric: 8
+
+        - insert:
+            tableName: detalle_pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 9
+              - column:
+                  name: libro_id
+                  valueNumeric: 7
+              - column:
+                  name: cantidad
+                  valueNumeric: 1
+              - column:
+                  name: precio_unitario
+                  valueNumeric: 35000
+              - column:
+                  name: subtotal
+                  valueNumeric: 35000
+              - column:
+                  name: pedido_id
+                  valueNumeric: 9
+
+        - insert:
+            tableName: detalle_pedido
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 10
+              - column:
+                  name: libro_id
+                  valueNumeric: 8
+              - column:
+                  name: cantidad
+                  valueNumeric: 1
+              - column:
+                  name: precio_unitario
+                  valueNumeric: 19000
+              - column:
+                  name: subtotal
+                  valueNumeric: 19000
+              - column:
+                  name: pedido_id
+                  valueNumeric: 10
